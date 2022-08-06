@@ -1,9 +1,9 @@
 variable "project" {
-    default = "terraform-gcp-77"
-} 
+  default = "terraform-gcp-77"
+}
 
-variable "credentials_file" { 
-    default = "/home/jeking/Desktop/terraform-auth/terraform-gcp-77.json"
+variable "credentials_file" {
+  default = "/home/jeking/Desktop/terraform-auth/terraform-gcp-77.json"
 }
 
 variable "region" {
@@ -16,4 +16,8 @@ variable "location" {
 
 variable "zone" {
   default = "us-central1-f"
+}
+
+variable "arm-image" {
+  default = "debian-cloud/debian-11-bullseye-arm64-v20220719"
 }
