@@ -24,7 +24,7 @@ resource "google_compute_network" "vpc_network" {
 
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
-  machine_type = "t2a-standard-1"
+  machine_type = var.arm-machine-type
   zone         = var.zone
   boot_disk {
     initialize_params {
