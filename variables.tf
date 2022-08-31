@@ -25,3 +25,7 @@ variable "arm-image" {
 variable "arm-machine-type" {
   default = "t2a-standard-1"
 }
+
+variable "cidr" {
+  default = "10.0.0.0/16"
+}
