@@ -30,7 +30,7 @@ module "network" {
   subnets = [
     {
       name               = "subnet-01"
-      ip_cidr_range      = var.cidr
+      ip_cidr_range      = var.cidr[0]
       region             = var.region
       secondary_ip_range = {}
     },
