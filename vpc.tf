@@ -3,7 +3,7 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_compute_address" "vm_static_ip" {
-  name = "terraform-static-ip"
+  name = "terraform-gcp-77-static-ip"
 }
 
 resource "google_compute_firewall" "default" {
@@ -30,7 +30,7 @@ module "network" {
   subnets = [
     {
       name               = "subnet-01"
-      ip_cidr_range      = var.cidr[0]
+      ip_cidr_range      = var.cidr
       region             = var.region
       secondary_ip_range = {}
     },
@@ -41,6 +41,6 @@ module "network_fabric-net-firewall" {
   source       = "./modules/net-vpc-firewall"
   project_id   = var.project
   network      = module.network.name
-  admin_ranges = var.cidr
+  admin_ranges = var.cidr_range
 
 }

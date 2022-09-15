@@ -1,11 +1,3 @@
-terraform {
-  #backend "local" {} store backend in GCP bucket instead
-  backend "gcs" {
-    bucket      = "terraform-gcp-77-bucket"
-    prefix      = "terraform-state"
-    credentials = "/home/jeking/Desktop/terraform-auth/terraform-gcp-77.json"
-  }
-}
 
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
@@ -49,7 +41,8 @@ resource "google_compute_instance" "vm_instance-module" {
   }
 
   network_interface {
-    network = module.network.name
+    #network = module.network.name
+    network = "default"
     access_config {
 
     }
