@@ -41,10 +41,10 @@ resource "google_compute_instance" "vm_instance-module" {
   }
 
   network_interface {
-    #network = module.network.name
     network = "default"
     access_config {
 
     }
   }
+  allow_stopping_for_update = true
 }

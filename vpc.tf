@@ -34,6 +34,12 @@ module "network" {
       region             = var.region
       secondary_ip_range = {}
     },
+    {
+      name               = "subnet-02"
+      ip_cidr_range      = var.cidrsub
+      region             = var.region
+      secondary_ip_range = {}
+    },
   ]
 }
 
