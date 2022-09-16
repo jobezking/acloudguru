@@ -1,2 +1,2 @@
-cidr_range = ["10.0.0.0/16"]
-cidrsub = "10.1.0.0/20"
+google-cidr_range = ["192.168.0.0/16"]
+google-cidrsub = "192.168.0.0/20"

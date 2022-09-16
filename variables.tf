@@ -26,6 +26,18 @@ variable "arm-machine-type" {
   default = "t2a-standard-1"
 }
 
+variable "google-cidr" {
+  default = "192.168.0.0/16"
+}
+
+variable "google-cidrsub" {
+  default = "192.168.0.0/16"
+}
+
+variable google-cidr_range{
+  
+}
+
 variable "cidr" {
   default = "10.0.0.0/16"
 }
@@ -34,6 +46,3 @@ variable "cidrsub" {
   default = "10.0.0.0/16"
 }
 
-variable cidr_range{
-  
-}
