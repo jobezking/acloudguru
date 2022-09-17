@@ -41,6 +41,7 @@ resource "google_compute_instance" "vm_instance-module" {
   }
 
   network_interface {
+    #network = var.module_network
     network = "default"
     access_config {
 

@@ -22,31 +22,20 @@ resource "google_compute_firewall" "default" {
 
 # github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/modules
 
-module "google-network" {
-  source     = "./modules/net-vpc"
-  name       = "my-vpc-network"
-  project_id = var.project
+module "vpc" {
+    source  = "./modules/vpc"
+    
+    auto_create_subnetworks = false
+    project_id   = var.project
+    network_name = var.module_network
 
-  subnets = [
-    {
-      name               = "subnet-01"
-      ip_cidr_range      = var.google-cidr
-      region             = var.region
-      secondary_ip_range = {}
-    },
-    {
-      name               = "subnet-02"
-      ip_cidr_range      = var.google-cidrsub
-      region             = var.region
-      secondary_ip_range = {}
-    },
-  ]
+    shared_vpc_host = false
 }
 
 module "network" {
   source  = "./modules/subnets"
 
-  network_name = "terraform-vpc-network"
+  network_name = module.vpc.network_name
   project_id   = var.project
 
   subnets = [
@@ -67,7 +56,7 @@ module "network" {
 module "network_fabric-net-firewall" {
   source       = "./modules/net-vpc-firewall"
   project_id   = var.project
-  network      = module.google-network.name
-  admin_ranges = var.google-cidr_range
+  network      = module.vpc.network_name
+  admin_ranges = var.cidr_range
 
 }
