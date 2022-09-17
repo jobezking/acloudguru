@@ -34,7 +34,11 @@ variable "cidr_range" {
   default = ["10.0.0.0/16"]
 }
 
+variable "private_cidr" {
+  default = "10.0.0.0/16"
+}
+
 variable "module_network" {
-  type = string
+  type    = string
   default = "default_network"
 }
