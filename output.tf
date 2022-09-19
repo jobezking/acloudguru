@@ -10,6 +10,10 @@ output "vm_instance-micro_ip" {
   value = google_compute_instance.vm_instance-micro.network_interface.0.network_ip
 }
 
-output "vm_instance-module" {
-  value = google_compute_instance.vm_instance-module.network_interface.0.network_ip
+output "vm_instance-module_external" {
+  value = module.vm_instance-module.external_ip
+}
+
+output "vm_instance-module_internal" {
+  value = module.vm_instance-module.internal_ip
 }

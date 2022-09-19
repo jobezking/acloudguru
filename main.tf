@@ -39,23 +39,32 @@ resource "google_compute_instance" "vm_instance-micro" {
   metadata_startup_script   = file("./src/install-chrome-remote-desktop.sh")
 }
 
-resource "google_compute_instance" "vm_instance-module" {
-  name         = "terraform-instance-module"
-  machine_type = "f1-micro"
-  tags         = ["web"]
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-11"
-    }
+module "vm_instance-module" {
+  source     = "./modules/compute-vm"
+  name       = "terraform-instance-module"
+  zone       = var.zone
+  project_id = var.project
+  tags       = ["web"]
+  boot_disk = {
+    image = "debian-cloud/debian-11"
+    type  = "pd-ssd"
+    size  = 10
   }
 
-  network_interface {
+  network_interfaces = [{
     #network = var.module_network
-    network = "default"
-    access_config {
-      nat_ip = ""
-    }
+    network    = google_compute_network.vpc_network.name
+    subnetwork = null
+    nat        = false
+    addresses  = null
+  }]
+  options = {
+    allow_stopping_for_update = true
+    deletion_protection       = true
+    spot                      = false
+    termination_action        = "STOP"
   }
-  allow_stopping_for_update = true
-  metadata_startup_script   = file("./src/startup.sh")
+  metadata = {
+    metadata_startup_script = file("./src/startup.sh")
+  }
 }

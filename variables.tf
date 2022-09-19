@@ -22,6 +22,14 @@ variable "arm-image" {
   default = "debian-cloud/debian-11-bullseye-arm64-v20220719"
 }
 
+variable "apache_startup_script" {
+  default = "./src/startup.sh"
+}
+
+variable "rdp_startup_script" {
+  default = "./src/install-chrome-remote-desktop.sh"
+}
+
 variable "arm-machine-type" {
   default = "t2a-standard-1"
 }
