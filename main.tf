@@ -52,15 +52,14 @@ module "vm_instance-module" {
   }
 
   network_interfaces = [{
-    #network = var.module_network
-    network    = google_compute_network.vpc_network.name
-    subnetwork = null
+    network    = module.vpc.network_self_link
+    subnetwork = module.vpc.subnets_self_links[0]
     nat        = false
     addresses  = null
   }]
   options = {
     allow_stopping_for_update = true
-    deletion_protection       = true
+    deletion_protection       = false
     spot                      = false
     termination_action        = "STOP"
   }

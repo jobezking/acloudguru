@@ -46,7 +46,17 @@ variable "private_cidr" {
   default = "10.0.0.0/16"
 }
 
-variable "module_network" {
+variable "module_vpc" {
   type    = string
   default = "default_network"
+}
+
+variable "module_ranges" {
+  description = "Subnets"
+  type        = list(string)
+  default = [
+    "10.2.218.192/26",
+    "10.2.218.128/26",
+    "10.2.219.0/28",
+  "10.2.219.16/28"]
 }
